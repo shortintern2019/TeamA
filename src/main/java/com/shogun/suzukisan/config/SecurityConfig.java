@@ -33,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .csrf();
+
+//        TODO: xxs対策を一時的に外す
+        http.cors().and().csrf().disable();
     }
 
     @Override
