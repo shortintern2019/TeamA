@@ -28,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout**")//ログアウト時のURL（今回は未実装）
                 .logoutSuccessUrl("/login");//ログアウト成功時のURL
 
+//      TODO: xxs対策を一時的に外す
+        http.cors().and().csrf().disable();
     }
 
     @Override
