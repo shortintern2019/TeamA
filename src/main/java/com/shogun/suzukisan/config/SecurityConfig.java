@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();  // それ以外は全て認証無しの場合アクセス不許可
 
         http.formLogin()
-                .loginProcessingUrl("/login")//ログイン処理をするURL
-                .loginPage("/login")//ログイン画面のURL
+//                .loginProcessingUrl("/login")//ログイン処理をするURL
+//                .loginPage("/login")//ログイン画面のURL
                 .failureUrl("/login?error")//認証失敗時のURL
                 .successForwardUrl("/conversation")//認証成功時のURL
                 .usernameParameter("email")//ユーザのパラメータ名
