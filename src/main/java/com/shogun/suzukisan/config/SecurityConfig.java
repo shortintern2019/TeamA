@@ -10,29 +10,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static String ROLE_USER = "USER";
-    private static String ROLE_ADMIN = "ADMIN";
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user").hasAnyRole(ROLE_USER, ROLE_ADMIN)
-                .antMatchers("/admin").hasRole(ROLE_ADMIN)
-                .and()
+                .antMatchers("conversation").permitAll() // indexは全ユーザーアクセス許可
+                .anyRequest().authenticated();  // それ以外は全て認証無しの場合アクセス不許可
 
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/user")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .permitAll()
-                .and()
+        http.formLogin()
+                .loginProcessingUrl("/login")//ログイン処理をするURL
+                .loginPage("/loginFrom")//ログイン画面のURL
+                .failureUrl("/login?error")//認証失敗時のURL
+                .successForwardUrl("/success")//認証成功時のURL
+                .usernameParameter("email")//ユーザのパラメータ名
+                .passwordParameter("password");//パスワードのパラメータ名
 
-                .logout()
-                .permitAll()
-                .and()
+        http.logout()
+                .logoutUrl("/logout**")//ログアウト時のURL（今回は未実装）
+                .logoutSuccessUrl("/login");//ログアウト成功時のURL
 
-                .csrf();
     }
 
     @Override
