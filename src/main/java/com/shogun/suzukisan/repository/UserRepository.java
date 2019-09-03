@@ -1,9 +1,9 @@
 package com.shogun.suzukisan.repository;
 
-import com.shogun.suzukisan.entity.UserEntity;
+import com.shogun.suzukisan.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserEntity, Long>
+public interface UserRepository extends JpaRepository<User, Long>
 {
-    public UserEntity findByUsername(String username);
+    public User findByUsername(String username);
 }

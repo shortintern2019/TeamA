@@ -14,8 +14,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "users")
-public class UserEntity implements UserDetails
+//@Table(name = "users")
+public class User implements UserDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +26,20 @@ public class UserEntity implements UserDetails
 
     @Column(nullable = false)
     private String password;
+
+    protected User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "User[id=%d, firstName='%s', lastName='%s']",
+                id, username, password);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()

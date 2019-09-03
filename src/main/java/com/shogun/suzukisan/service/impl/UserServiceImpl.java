@@ -1,6 +1,6 @@
 package com.shogun.suzukisan.service.impl;
 
-import com.shogun.suzukisan.entity.UserEntity;
+import com.shogun.suzukisan.entity.User;
 import com.shogun.suzukisan.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +23,17 @@ public class UserServiceImpl implements UserDetailsService
             throw new UsernameNotFoundException("");
         }
 
-        UserEntity memberEntity = userRepository.findByUsername(username);
-        if (memberEntity == null)
+        User user = userRepository.findByUsername(username);
+        if (user == null)
         {
             throw new UsernameNotFoundException("");
         }
 
-        return memberEntity;
+        return user;
     }
 
     @Autowired
-    public void setMemberRepository(UserRepository userRepository)
+    public void setUserRepository(UserRepository userRepository)
     {
         this.userRepository = userRepository;
     }
