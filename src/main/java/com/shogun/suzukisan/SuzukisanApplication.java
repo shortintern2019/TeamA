@@ -28,7 +28,7 @@ public class SuzukisanApplication {
     public CommandLineRunner addUser(UserRepository repository) {
         return (args) -> {
             // save a couple of User
-            repository.save(new User("Jack", "Bauer@example.com", "hashedPass"));
+            repository.save(new User("Jack", "aaaa@example.com", "hashedPass"));
             repository.save(new User("Chloe", "Bauer@example.com", "hashedPass"));
             repository.save(new User("Kim", "Bauer@example.com", "hashedPass"));
             repository.save(new User("David", "Bauer@example.com", "hashedPass"));

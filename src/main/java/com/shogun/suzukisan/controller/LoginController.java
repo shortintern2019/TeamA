@@ -9,8 +9,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String getLogin(Model model) {
-        model.addAttribute("name", "getLogin");
-        return "Hello";
+        return "login";
     }
 
 //    TODO POST:/login は別途設定
