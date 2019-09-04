@@ -1,6 +1,7 @@
 package com.shogun.suzukisan.entity;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -8,9 +9,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.util.Date;
 
-@Getter
-@Setter
 @MappedSuperclass
+@NoArgsConstructor
+@Data
 public class TimeStamp {
     @Column(name = "created_datetime")
     private Date createdDatetime;
@@ -28,4 +29,10 @@ public class TimeStamp {
     public void onPreUpdate() {
         setUpdatedDatetime(new Date());
     }
+
+
+    public Date getCreatedDatetime() { return createdDatetime; }
+    public void setCreatedDatetime(Date createdDatetime) { this.createdDatetime = createdDatetime; }
+    public Date getUpdatedDatetime() { return updatedDatetime; }
+    public void setUpdatedDatetime(Date updatedDatetime) { this.updatedDatetime = updatedDatetime; }
 }

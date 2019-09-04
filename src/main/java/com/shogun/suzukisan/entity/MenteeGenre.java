@@ -1,11 +1,19 @@
 package com.shogun.suzukisan.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
+@NoArgsConstructor
+@Getter
+@Setter
 public class MenteeGenre {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,42 +24,10 @@ public class MenteeGenre {
     @NotNull
     @ManyToOne
     private Genre genreId;
-    protected MenteeGenre() {}
 
     @Autowired
     public MenteeGenre(Mentee menteeId, Genre genreId) {
         this.menteeId = menteeId;
-        this.genreId = genreId;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "MentorGenre[id=%d, menteeId='%s', genreId='%s']",
-                id, menteeId, genreId);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Mentee getMenteeId() {
-        return menteeId;
-    }
-
-    public void setMenteeId(Mentee menteeId) {
-        this.menteeId = menteeId;
-    }
-
-    public Genre getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(Genre genreId) {
         this.genreId = genreId;
     }
 }
