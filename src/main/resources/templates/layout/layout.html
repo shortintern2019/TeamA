@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head lang="ja">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>SkyWay JS SDK Tutorial</title>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+        <link th:href="@{/css/conversation.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <header layout:fragment="header">
+        </header>
+
+        <div layout:fragment="contents">
+
+        </div>
+
+        <footer layout:fragment="footer">
+        </footer>
+
+        <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/conversation.js}"></script>
+    </body>
+
+</html>
