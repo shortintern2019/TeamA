@@ -108,11 +108,11 @@ public class UserService {
     }
     // update mentorCounter
     public Integer updateMentorCounter(Integer mentorCounter, Long userId) {
-        return userRepository.updateMentorCounter(mentorCounter, userId);
+        return userRepository.updateMentorCount(mentorCounter, userId);
     }
     // update menteeCounter
     public Integer updateMenteeCounter(Integer menteeConter, Long userId) {
-        return userRepository.updateMenteeCounter(menteeConter, userId);
+        return userRepository.updateMenteeCount(menteeConter, userId);
     }
 
     // DELETE

@@ -70,13 +70,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
     // update mentorCounter
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.mentorCounter = mentorCounter where h = userId")
-    Integer updateMentorCounter(@Param("mentorCounter") Integer mentorCounter, @Param("userId") Long userId);
+    @Query("UPDATE User h SET h.mentorCount = mentorCount where h = userId")
+    Integer updateMentorCount(@Param("mentorCount") Integer mentorCount, @Param("userId") Long userId);
     // update menteeCounter
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.menteeCounter = menteeCounter where h = userId")
-    Integer updateMenteeCounter(@Param("menteeCounter") Integer menteeCounter, @Param("userId") Long userId);
+    @Query("UPDATE User h SET h.menteeCount = menteeCount where h = userId")
+    Integer updateMenteeCount(@Param("menteeCount") Integer menteeCount, @Param("userId") Long userId);
 
     // DELETE
     // by email
