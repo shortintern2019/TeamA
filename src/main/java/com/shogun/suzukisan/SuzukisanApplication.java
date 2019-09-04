@@ -29,11 +29,11 @@ public class SuzukisanApplication {
         return (args) -> {
             // save a couple of User
             repository.save(new User("Jack", "aaaa@example.com", "hashedPass"));
-            repository.save(new User("Chloe", "Bauer@example.com", "hashedPass"));
-            repository.save(new User("Kim", "Bauer@example.com", "hashedPass"));
-            repository.save(new User("David", "Bauer@example.com", "hashedPass"));
-            repository.save(new User("Michelle", "Bauer@example.com", "hashedPass"));
-            repository.save(new User("Jack", "Bauer@example.com", "hashedPass"));
+            repository.save(new User("Chloe", "bbb@example.com", "hashedPass"));
+            repository.save(new User("Kim", "cccc@example.com", "hashedPass"));
+            repository.save(new User("David", "ddd@example.com", "hashedPass"));
+            repository.save(new User("Michelle", "eeee@example.com", "hashedPass"));
+            repository.save(new User("Jack", "ffff@example.com", "hashedPass"));
 
 
             // fetch all User

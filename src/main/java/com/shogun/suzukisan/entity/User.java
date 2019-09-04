@@ -27,6 +27,7 @@ public class User extends TimeStamp implements UserDetails {
     @NotEmpty
     private String name;
     @Email
+    @Column(nullable = false, unique = true)
     private String email;
     @NotEmpty
     private String password;
