@@ -22,23 +22,23 @@ public class User implements UserDetails
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String username;
+    private String email;
 
     @Column(nullable = false)
     private String password;
 
     protected User() {}
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "User[id=%d, firstName='%s', lastName='%s']",
-                id, username, password);
+                "User[id=%d, email='%s', lastName='%s']",
+                id, email, password);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class User implements UserDetails
     @Override
     public String getUsername()
     {
-        return this.username;
+        return this.email;
     }
 
     @Override
