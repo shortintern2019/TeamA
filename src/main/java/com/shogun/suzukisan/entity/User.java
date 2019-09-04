@@ -1,85 +1,64 @@
 package com.shogun.suzukisan.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-//@Table(name = "users")
-public class User implements UserDetails
-{
+@NoArgsConstructor
+@Data
+@Getter
+@Setter
+public class User extends TimeStamp {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-
-    @Column(nullable = false, unique = true)
+    @NotEmpty
+    private String name;
+    @Email
     private String email;
-
-    @Column(nullable = false)
+    @NotEmpty
     private String password;
+    @NotNull
+    @Min(0)
+    private Integer mentorScore;
+    @NotNull
+    @Min(0)
+    private Integer menteeScore;
+    @NotNull
+    @Min(0)
+    private Integer mentorCount;
+    @NotNull
+    @Min(0)
+    private Integer menteeCount;
 
-    protected User() {}
-
-    public User(String email, String password) {
+    @Autowired
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
+        this.mentorScore = 0;
+        this.menteeScore = 0;
+        this.mentorCount = 0;
+        this.menteeCount = 0;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "User[id=%d, email='%s', lastName='%s']",
-                id, email, password);
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities()
-    {
-        return null;
-    }
-
-    @Override
-    public String getPassword()
-    {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername()
-    {
-        return this.email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled()
-    {
-        return true;
+    @Autowired
+    public User(String name, String email, String password, Integer mentorScore, Integer menteeScore, Integer mentorCount, Integer menteeCount) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.mentorScore = mentorScore;
+        this.menteeScore = menteeScore;
+        this.mentorCount = mentorCount;
+        this.menteeCount = menteeCount;
     }
 }

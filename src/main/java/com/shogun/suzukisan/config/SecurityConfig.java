@@ -40,6 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //      TODO: xxs対策を一時的に外す
         http.cors().and().csrf().disable();
+//        TODO: h2 viewer用
+        http.headers().frameOptions().disable();
+        http.headers().frameOptions().sameOrigin();
     }
 
     @Autowired

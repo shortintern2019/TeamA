@@ -1,9 +1,14 @@
 package com.shogun.suzukisan.repository;
 
 import com.shogun.suzukisan.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends JpaRepository<User, Long>
-{
-    public User findByEmail(String Email);
+import java.util.List;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+    List<User> findByName(String name);
+    List<User> findByMentorScore(Integer mentorScore);
+    List<User> findByMenteeScore(Integer menteeScore);
+    List<User> findByMentorCount(Integer mentorCount);
+    List<User> findByMenteeCount(Integer menteeCount);
 }
