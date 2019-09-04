@@ -1,4 +1,4 @@
-package com.shogun.suzukisan.Controller;
+package com.shogun.suzukisan.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +9,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String getLogin(Model model) {
-        model.addAttribute("name", "getLogin");
-        return "Hello";
+        return "login";
     }
 
 //    TODO POST:/login は別途設定
