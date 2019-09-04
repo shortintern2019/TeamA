@@ -1,4 +1,4 @@
-package com.shogun.suzukisan.Controller;
+package com.shogun.suzukisan.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
