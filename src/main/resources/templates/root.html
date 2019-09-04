@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
+
 <body>
+
+<div layout:decorator="layout">
+    <div layout:fragment="contents">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 center jumbotron">
+                    <h1 class="home_title">
+                        ようこそ 鈴木さんへ
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
+

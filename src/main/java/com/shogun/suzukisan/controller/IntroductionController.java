@@ -11,7 +11,7 @@ public class IntroductionController {
     @RequestMapping(value="", method= RequestMethod.GET)
     public String root(Model model) {
         model.addAttribute("name", "root");
-        return "hello";
+        return "root";
     }
 
     @RequestMapping(value="/home", method= RequestMethod.GET)
