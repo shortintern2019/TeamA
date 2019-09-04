@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class LoginController {
 
+    /**
+     * ログイン中のユーザの情報を表示するページ
+     */
     @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("name", "getLogin");
-        return "Hello";
-    }
-
-//    TODO POST:/login は別途設定
-    @PostMapping("/greeting")
-    public String postLogin(Model model) {
-        model.addAttribute("name", "postLogin");
-        return "Hello";
+    public String login() {
+        return "login";
     }
 
 }

@@ -8,18 +8,18 @@
 <form action="" th:action="@{/login}" method="post">
     <p>
         ユーザーID:
-        <input type="text" name="user" />
+        <input type="text" name="email" />
     </p>
     <p>
         パスワード:
-        <input type="password" name="pass" />
+        <input type="password" name="password" />
     </p>
     <p>
         <input type="submit" value="ログイン" />
     </p>
 </form>
-<!--<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">-->
-    <!--<span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>-->
-<!--</div>-->
+<div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+    <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+</div>
 </body>
 </html>
