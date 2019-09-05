@@ -12,27 +12,31 @@
     <div layout:fragment="contents">
         <div class="container">
             <form id="matching-preference-form" action="" th:action="@{/connect}" method="post">
-                <div class="row matching-type-container" style="padding-top: 50px;padding-bottom: 100px;">
-                    <div class="mx-auto">
-                        <div class="selection-group">
-                            <div class="form-check form-check-inline">
-                                <input id="mentor" class="form-check-input" type="radio" name="soudan" value="mentor">
-                                <label for="mentor">
-                                    <img th:src="@{/images/mentor.png}">
-                                </label>
-                            </div>
+                <div class="matching-type-container" style="margin-top: 50px; margin-bottom: 100px; background-color: #f2f2f2; padding: 50px;">
+                    <h2>相談立場</h2>
+                    <div class="row">
+                        <div class="mx-auto">
+                            <div class="selection-group">
+                                <div class="form-check form-check-inline">
+                                    <input id="mentor" class="form-check-input" type="radio" name="soudan" value="mentor">
+                                    <label for="mentor">
+                                        <img th:src="@{/images/mentor.png}">
+                                    </label>
+                                </div>
 
-                            <div class="form-check form-check-inline">
-                                <input id="mentee" class="form-check-input" type="radio" name="soudan" value="mentee">
-                                <label for="mentee">
-                                    <img th:src="@{/images/mentee.png}">
-                                </label>
+                                <div class="form-check form-check-inline">
+                                    <input id="mentee" class="form-check-input" type="radio" name="soudan" value="mentee">
+                                    <label for="mentee">
+                                        <img th:src="@{/images/mentee.png}">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row genre-container" style="padding-bottom: 100px">
+                <div class="row genre-container" style="margin-bottom: 100px; background-color: #f2f2f2; padding: 50px;">
+                    <h2>相談ジャンルの選択(複数選択可能)</h2>
                     <div class="mx-auto">
                         <div class="selection-group">
                             <div class="form-check form-check-inline" th:each="genre:${genres}">
