@@ -3,6 +3,7 @@ package com.shogun.suzukisan.service;
 import com.shogun.suzukisan.entity.Genre;
 import com.shogun.suzukisan.entity.Mentee;
 import com.shogun.suzukisan.entity.MenteeGenre;
+import com.shogun.suzukisan.entity.MentorGenre;
 import com.shogun.suzukisan.repository.MenteeGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,10 @@ public class MenteeGenreService {
     public List<MenteeGenre> findByGenreId(Genre genre) {
         return menteeGenreRepository.findByGenreId(genre);
     }
+    public List<MentorGenre> findByGenreName(String name) {
+        return menteeGenreRepository.findByGenreName(name);
+    }
+
 
     // DELETE
     public void deleteById(Long id) {

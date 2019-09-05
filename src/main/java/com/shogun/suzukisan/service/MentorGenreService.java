@@ -33,6 +33,9 @@ public class MentorGenreService {
     public List<MentorGenre> findByGenreId(Genre genre) {
         return mentorGenreRepository.findByGenreId(genre);
     }
+    public List<MentorGenre> findByGenreName(String name) {
+        return mentorGenreRepository.findByGenreName(name);
+    }
 
     // DELETE
     public void deleteById(Long id) {
