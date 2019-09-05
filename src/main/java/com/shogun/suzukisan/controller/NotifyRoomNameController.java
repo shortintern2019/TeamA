@@ -11,5 +11,10 @@ public class NotifyRoomNameController {
     @PostMapping("/notify_room_name")
     public void notifyRoomName(@RequestBody NotifyRoom notifyRoom) {
 
+        System.out.println("-- Request Data --");
+        System.out.println(notifyRoom.getRoom());
+        System.out.println(notifyRoom.getRole());
+        System.out.println("------------------");
+
     }
 }

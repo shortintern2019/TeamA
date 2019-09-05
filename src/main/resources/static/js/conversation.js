@@ -101,12 +101,9 @@ function postRoomId(id) {
         url: url,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({userId: userId, roomId: id}),
+        data: JSON.stringify({"room": id, "role": role}),
         timeout: 3000,
     }).done(function (data) {
-
     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-
     });
-
 }

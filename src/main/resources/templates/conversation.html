@@ -50,7 +50,7 @@
     <div layout:fragment="moreScripts">
         <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
         <script th:inline="javascript">
-            var userId = '1';
+            var role = [[${role}]];
         </script>
         <script th:src="@{/js/conversation.js}"></script>
     </div>

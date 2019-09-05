@@ -6,13 +6,22 @@ public class NotifyRoom implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String name;
+    private String room;
+    private String role;
 
-    public String getName() {
-        return name;
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 }

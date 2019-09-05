@@ -61,6 +61,7 @@ public class ConnectController {
         }
 
         model.addAttribute("room_name", roomName);
+        model.addAttribute("role", role.toString());
 
         System.out.println("room Status");
         for (Room room : roomService.findAll()) {
@@ -68,7 +69,7 @@ public class ConnectController {
         }
         System.out.println("------------------");
 
-        return "hello";
+        return "conversation";
     }
 
     public String beMentee(List<String> genres, User user) {
