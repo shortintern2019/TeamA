@@ -19,6 +19,7 @@ public class Genre {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @NotEmpty
+    @Column(unique=true)
     private String name;
     private String imageUrl;
 
