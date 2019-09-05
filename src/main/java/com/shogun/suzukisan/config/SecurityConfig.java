@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")//ユーザのパラメータ名
                 .passwordParameter("password");//パスワードのパラメータ名
 
+
 //      TODO: xxs対策を一時的に外す
         http.cors().and().csrf().disable();
 //        TODO: h2 viewer用

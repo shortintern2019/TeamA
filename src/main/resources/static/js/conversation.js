@@ -53,30 +53,36 @@ peer.on('call', function(call){
 
 function setupCallEventHandlers(call){
     if (existingCall) {
-        existingCall.close();
+        return
     };
+
+    call.on('close', function(){
+        endPeer()
+    });
 
     existingCall = call;
 
+    endStandby();
+
     call.on('stream', function(stream){
-        addVideo(call,stream);
+        addAudio(call,stream);
         setupEndCallUI();
         $('#their-id').text(call.remoteId);
     });
     call.on('close', function(){
-        removeVideo(call.remoteId);
+        removeAudio(call.remoteId);
         setupMakeCallUI();
     });
 }
 
-function addVideo(call,stream){
+function addAudio(call, stream){
     updateAudioEnable(true);
     $('#their-audio').get(0).srcObject = stream;
 }
 
-function removeVideo(peerId){
+function removeAudio(peerId){
     updateAudioEnable(false);
-    $('#'+peerId).remove();
+    // $('#'+peerId).remove();
 }
 
 function setupMakeCallUI(){
@@ -95,6 +101,11 @@ function updateAudioEnable(enable) {
     }
 }
 
+function endStandby() {
+    $('.standby-container').hide();
+    $('.conversation-container').show();
+}
+
 function postRoomId(id) {
     var url= 'http://localhost:8080/notify_room_name';
     $.ajax({
@@ -108,5 +119,8 @@ function postRoomId(id) {
     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
 
     });
+}
 
+function endPeer() {
+    window.location.href = '/';
 }
