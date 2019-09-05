@@ -79,6 +79,7 @@ public class ConnectController {
         model.addAttribute("user_id", user.getId());
         model.addAttribute("room_name", roomName);
         model.addAttribute("room_name", roomName);
+        model.addAttribute("role", role.toString());
 
         System.out.println("room Status");
         for (Room room : roomService.findAll()) {

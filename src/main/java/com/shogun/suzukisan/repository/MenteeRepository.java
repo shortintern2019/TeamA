@@ -23,6 +23,6 @@ public interface MenteeRepository extends CrudRepository<Mentee, Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Mentee h SET h.roomName = roomName where h = menteeId")
-    Integer updateRoomName(@Param("roomName") String roomName, @Param("menteeId") Long menteeId);
+    @Query("UPDATE Mentee h SET h.roomName = :roomName where h.userId = :userId")
+    Integer updateRoomName(@Param("roomName") String roomName, @Param("userId") User userId);
 }

@@ -16,16 +16,25 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     return;
 });
 
-if (roomName == "wait") {
-    createPeer()
-} else {
-    const call = peer.call(roomName, localStream, {
-        metadata: {
-            partnerUserName: partnerUserName,
-        }
-    });
-    setupCallEventHandlers(call);
-}
+peer = new Peer({
+    key: '339d7027-558e-4bc8-a59a-64478447ce23',
+    debug: 3
+});
+
+peer.on('open', function(){
+    postRoomId(peer.id);
+    $('#my-id').text(peer.id);
+});
+
+peer.on('error', function(err){
+    alert(err.message);
+});
+
+peer.on('close', function(){
+});
+
+peer.on('disconnected', function(){
+});
 
 $('#make-call').submit(function(e){
     e.preventDefault();
@@ -99,59 +108,9 @@ function postRoomId(id) {
         url: url,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({user: userId, room: id}),
+        data: JSON.stringify({"room": id, "role": role}),
         timeout: 3000,
     }).done(function (data) {
-
     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-
-    });
-}
-
-function endPeer() {
-    // window.location.href = '/';
-    $('.review-container').click()
-}
-
-$('.review-container').modaal({
-    is_locked: true
-});
-
-$('#send-button').on('click', function() {
-
-    if($("[name=ratingScore]:checked").length == 0) {
-        alert("スコアを選択してください。");
-        return
-    }
-
-    $("[name=userId]").val(partnerUserId);
-    $('#review-form').submit();
-});
-
-function createPeer() {
-    peer = new Peer({
-        key: '339d7027-558e-4bc8-a59a-64478447ce23',
-        debug: 3
-    });
-
-    peer.on('open', function(){
-        postRoomId(peer.id);
-        $('#my-id').text(peer.id);
-    });
-
-    peer.on('error', function(err){
-        alert(err.message);
-    });
-
-    peer.on('close', function(){
-    });
-
-    peer.on('disconnected', function(){
-    });
-
-    peer.on('call', function(call){
-        call.answer(localStream);
-        setupCallEventHandlers(call);
-        partnerUserName = call.metadata.partnerUserName;
     });
 }

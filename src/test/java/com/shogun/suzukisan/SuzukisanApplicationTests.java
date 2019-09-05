@@ -83,6 +83,24 @@ public class SuzukisanApplicationTests {
     }
 
     @Test
+    public void mentorUpdateTest() {
+        // CREATE USER
+        User test1User = userRepository.save(new User("MentorGenreTest1", "updateCK@example.com", "hashedPass"));
+        // CREATE GENRE
+        Genre genre1 = genreRepository.save(new Genre("MentorGenreTest1", ""));
+        // CREATE Mentor
+        Mentor mentor1 = mentorService.create(new Mentor(test1User, "mentorGenreRoom1Name"));
+        for(Mentor mentor : mentorService.findAll()) {
+            log.info(mentor.toString());
+        }
+        // UPDATE
+        mentorService.updateRoomName("updated", test1User);
+        for(Mentor mentor : mentorService.findAll()) {
+            log.info(mentor.toString());
+        }
+    }
+
+    @Test
     public void mentorGenreServiceCrudTest() {
         // CREATE USER
         User test1User = userRepository.save(new User("MentorGenreTest1", "mentorGenreTest1@example.com", "hashedPass"));
