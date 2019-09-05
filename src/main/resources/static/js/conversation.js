@@ -16,25 +16,16 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     return;
 });
 
-peer = new Peer({
-    key: '339d7027-558e-4bc8-a59a-64478447ce23',
-    debug: 3
-});
-
-peer.on('open', function(){
-    postRoomId(peer.id);
-    $('#my-id').text(peer.id);
-});
-
-peer.on('error', function(err){
-    alert(err.message);
-});
-
-peer.on('close', function(){
-});
-
-peer.on('disconnected', function(){
-});
+if (roomName == "wait") {
+    createPeer()
+} else {
+    const call = peer.call(roomName, localStream, {
+        metadata: {
+            partnerUserName: partnerUserName,
+        }
+    });
+    setupCallEventHandlers(call);
+}
 
 $('#make-call').submit(function(e){
     e.preventDefault();
@@ -100,6 +91,54 @@ function endStandby() {
     $('.standby-container').hide();
     $('.conversation-container').show();
     $('#partner-user-name').text = partnerUserName;
+}
+
+function endPeer() {
+    // window.location.href = '/';
+    $('.review-container').click()
+}
+
+$('.review-container').modaal({
+    is_locked: true
+});
+
+$('#send-button').on('click', function() {
+
+    if($("[name=ratingScore]:checked").length == 0) {
+        alert("スコアを選択してください。");
+        return
+    }
+
+    $("[name=userId]").val(partnerUserId);
+    $('#review-form').submit();
+});
+
+function createPeer() {
+    peer = new Peer({
+        key: '339d7027-558e-4bc8-a59a-64478447ce23',
+        debug: 3
+    });
+
+    peer.on('open', function(){
+        postRoomId(peer.id);
+        $('#my-id').text(peer.id);
+    });
+
+    peer.on('error', function(err){
+        alert(err.message);
+    });
+
+    peer.on('close', function(){
+    });
+
+    peer.on('disconnected', function(){
+    });
+
+    peer.on('call', function(call){
+        call.answer(localStream);
+        setupCallEventHandlers(call);
+        partnerUserName = call.metadata.partnerUserName;
+    });
 }
 
 function postRoomId(id) {
