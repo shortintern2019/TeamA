@@ -68,31 +68,17 @@
 
             <div class="row">
                 <div class="mx-auto">
-
-                    <!--<form action="" id="end-call" class="pure-form">-->
-                        <button>
-                            　<img id="end-call" th:src="@{/images/tel.jpg}" width="64" height="64">
-                        </button>
-                        <p>
-                            <!--<input type="image" th:src="@{/images/tel.jpg}" width="64" height="64" alt="切るボタン">-->
-                        </p>
-                    <!--</form>-->
+                    <button>
+                        　<img id="end-call" th:src="@{/images/tel.jpg}" width="64" height="64">
+                    </button>
                 </div>
             </div>
         </div>
 
-        <p>Your id: <span id="my-id">...</span></p>
-        <form id="make-call" class="pure-form">
-            <input type="text" placeholder="Call user id..." id="callto-id">
-            <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
-        </form>
-            <!--<p>Currently in call with <span id="their-id">...</span></p>-->
-            <!--<button href="#" class="pure-button pure-button-success" type="submit">End Call</button>-->
-
         <!--レビュー-->
         <a href="#review-container" class="review-container"></a>
         <div id="review-container" class="container" style="display: none">
-            Aさんの評価をお願いします
+            <p id="review-partner-user-name" th:text="${partner_user_name}">さんの評価をよろしくお願い致します</p>
 
             <form id="review-form" action="" th:action="@{/review}" method="post">
                 <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">

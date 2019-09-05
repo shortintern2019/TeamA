@@ -57,14 +57,6 @@ function callPartner() {
     setupCallEventHandlers(call);
 }
 
-
-
-$('#make-call').submit(function(e){
-    e.preventDefault();
-    const call = peer.call($('#callto-id').val(), localStream);
-    setupCallEventHandlers(call);
-});
-
 $('#end-call').click(function(){
     existingCall.close();
 });
@@ -123,6 +115,7 @@ function endStandby() {
     $('.standby-container').hide();
     $('.conversation-container').show();
     $('#partner-user-name').text(partnerUserName);
+    $('#review-partner-user-name').text(partnerUserName + "さんの評価をよろしくお願い致します。");
 }
 
 function endPeer() {
