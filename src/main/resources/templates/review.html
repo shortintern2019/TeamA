@@ -1,0 +1,75 @@
+<!--新規ページ作成用テンプレート-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head lang="ja">
+    <style>
+    input[type="checkbox"]{
+      -webkit-appearance:none;
+      line-height:5em;
+      width:5em;
+      height:5em;
+      border:solid 1px #ddd;
+      background:-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+      -webkit-box-shadow:1px 1px 1px #888;
+      -webkit-border-radius:0.5em;
+      text-align:center;
+      color:#888;
+      font-weight:bold;
+    }
+    input[type="checkbox"]:before {
+      content:"★";
+      font-size:3em;
+    }
+    input[type="checkbox"]:checked {
+      color:#66f;
+    }
+  </style>
+
+    <style>
+    .flexbox{
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: stretch;
+      align-items: stretch;
+      border: 1px solid #aaa;
+      text-align: center;
+      height: 240px;
+      padding: 70px;
+      margin: 10px;
+    }
+  </style>
+
+
+</head>
+
+<body bgcolor="#ccff000">
+<div layout:decorator="layout">
+    <div layout:fragment="contents">
+    </div>
+    <div class="flexbox">
+        <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/s/shirokumamelon/20171112/20171112200906.png" border="10" alt="Aさん">
+    </div>
+
+    <center>Aさんの評価をお願いします</center>
+
+    <center>
+        <input type="checkbox" name="hyouka" >
+        <input type="checkbox" name="hyouka">
+        <input type="checkbox" name="hyouka">
+        <input type="checkbox" name="hyouka">
+        <input type="checkbox" name="hyouka"><br>
+    </center>
+
+    <center>
+        <input type="submit" value="評価する">
+    </center>
+
+    <div layout:fragment="moreScripts">
+    </div>
+</div>
+</body>
+</html>
