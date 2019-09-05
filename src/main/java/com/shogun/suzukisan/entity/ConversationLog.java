@@ -22,10 +22,10 @@ public class ConversationLog {
     private Long id;
     @NotNull
     @ManyToOne
-    private Mentor mentorId;
+    private User mentorId;
     @NotNull
     @ManyToOne
-    private Mentee menteeId;
+    private User menteeId;
     @NotEmpty
     private String roomName;
     @NotNull
@@ -36,9 +36,10 @@ public class ConversationLog {
     private Integer menteeScore;
 
     @Autowired
-    public ConversationLog(Mentor mentorId, Mentee menteeId, String roomName, Integer mentorScore, Integer menteeScore) {
+    public ConversationLog(User mentorId, User menteeId, String roomName, Integer mentorScore, Integer menteeScore) {
         this.menteeId = menteeId;
         this.mentorId = mentorId;
+        this.roomName = roomName;
         this.mentorScore = mentorScore;
         this.menteeScore = menteeScore;
     }

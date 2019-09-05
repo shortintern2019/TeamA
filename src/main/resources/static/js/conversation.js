@@ -4,11 +4,12 @@ let localStream = null;
 let peer = null;
 let existingCall = null;
 
-navigator.mediaDevices.getUserMedia({video: true, audio: true})
+navigator.mediaDevices.getUserMedia({video: false, audio: true})
     .then(function (stream) {
         // Success
         // $('#my-video').get(0).srcObject = stream;
         localStream = stream;
+        updateAudioEnable(false)
     }).catch(function (error) {
     // Error
     console.error('mediaDevice.getUserMedia() error:', error);
@@ -21,6 +22,7 @@ peer = new Peer({
 });
 
 peer.on('open', function(){
+    postRoomId(peer.id);
     $('#my-id').text(peer.id);
 });
 
@@ -68,10 +70,12 @@ function setupCallEventHandlers(call){
 }
 
 function addVideo(call,stream){
-    $('#their-video').get(0).srcObject = stream;
+    updateAudioEnable(true);
+    $('#their-audio').get(0).srcObject = stream;
 }
 
 function removeVideo(peerId){
+    updateAudioEnable(false);
     $('#'+peerId).remove();
 }
 
@@ -83,4 +87,26 @@ function setupMakeCallUI(){
 function setupEndCallUI() {
     $('#make-call').hide();
     $('#end-call').show();
+}
+
+function updateAudioEnable(enable) {
+    if (localStream) {
+        localStream.getAudioTracks()[0].enabled = enable
+    }
+}
+
+function postRoomId(id) {
+    var url= 'http://localhost:8080/notify_room_name';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({userId: userId, roomId: id}),
+        timeout: 3000,
+    }).done(function (data) {
+
+    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+
+    });
+
 }

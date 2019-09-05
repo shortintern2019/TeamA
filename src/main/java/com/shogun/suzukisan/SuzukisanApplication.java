@@ -35,7 +35,6 @@ public class SuzukisanApplication {
             repository.save(new User("Michelle", "eeee@example.com", "hashedPass"));
             repository.save(new User("Jack", "ffff@example.com", "hashedPass"));
 
-
             // fetch all User
             log.info("User found with findAll():");
             log.info("-------------------------------");
@@ -67,13 +66,11 @@ public class SuzukisanApplication {
     public CommandLineRunner addGenre(GenreRepository repository) {
         return (args) -> {
             // save a couple of User
-            repository.save(new Genre("恋愛"));
-            repository.save(new Genre("勉強"));
-            repository.save(new Genre("人間関係"));
-            repository.save(new Genre("人生"));
-            repository.save(new Genre("将来"));
-            repository.save(new Genre("その他"));
-
+            repository.save(new Genre("恋愛", "/images/genre/renai.jpg"));
+            repository.save(new Genre("学校", "/images/genre/school.jpg"));
+            repository.save(new Genre("就活", "/images/genre/shu-katsu.jpg"));
+            repository.save(new Genre("勉強", "/images/genre/study.jpg"));
+            repository.save(new Genre("いじめ", "/images/genre/izime.jpg"));
 
             // fetch all Genre
             log.info("Genre found with findAll():");

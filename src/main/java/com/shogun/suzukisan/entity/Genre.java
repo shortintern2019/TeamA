@@ -20,9 +20,11 @@ public class Genre {
     private Long id;
     @NotEmpty
     private String name;
+    private String imageUrl;
 
     @Autowired
-    public Genre(String name) {
+    public Genre(String name, String imageUrl) {
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 }
