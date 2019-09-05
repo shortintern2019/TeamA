@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")//ログイン処理をするURL
                 .loginPage("/login")//ログイン画面のURL
                 .failureUrl("/login?error")//認証失敗時のURL
-//                .successForwardUrl("/conversation")//認証成功時のURL
+                .successForwardUrl("/matching")//認証成功時のURL
                 .usernameParameter("email")//ユーザのパラメータ名
                 .passwordParameter("password");//パスワードのパラメータ名
 
