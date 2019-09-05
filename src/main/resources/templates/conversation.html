@@ -13,36 +13,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="pure-u-2-3 mx-auto" id="video-container">
-                        <img th:src="@{/images/baseline_face_black_48dp.png}">
-                        <video id="their-video" autoplay></video>
-                    </div>
-                </div>
-
-                <p th:text="${userInfo}"></p>
-
-                <div class="col-sm-12">
-                    <div class="pure-u-1-3">
-                        <h2>SkyWay Video</h2>
-
-                        <p>Your id: <span id="my-id">...</span></p>
-                        <p>Share this id with others so they can call you.</p>
-                        <h3>Make a call</h3>
-                        <form id="make-call" class="pure-form">
-                            <input type="text" placeholder="Call user id..." id="callto-id">
-                            <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
-                        </form>
-                        <form id="end-call" class="pure-form">
-                            <p>Currently in call with <span id="their-id">...</span></p>
-                            <button href="#" class="pure-button pure-button-success" type="submit">End Call</button>
-                        </form>
+                    <div class="center-block" id="video-container">
+                        <img th:src="@{/images/baseline_face_black_48dp.png}" width="300" height="300">
+                        <audio id="their-audio" autoplay></audio>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="mx-auto">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                aaaaaaaaaaaさん
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <p>Your id: <span id="my-id">...</span></p>
+                <form id="make-call" class="pure-form">
+                    <input type="text" placeholder="Call user id..." id="callto-id">
+                    <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
+                </form>
+                <form id="end-call" class="pure-form">
+                    <p>Currently in call with <span id="their-id">...</span></p>
+                    <button href="#" class="pure-button pure-button-success" type="submit">End Call</button>
+                </form>
+
         </div>
     </div>
     <div layout:fragment="moreScripts">
         <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+        <script th:inline="javascript">
+            var userId = '1';
+        </script>
         <script th:src="@{/js/conversation.js}"></script>
     </div>
 </div>
