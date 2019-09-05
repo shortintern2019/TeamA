@@ -16,22 +16,46 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     return;
 });
 
-if (roomName == "wait") {
-    createPeer()
-} else {
+peer = new Peer({
+    key: '339d7027-558e-4bc8-a59a-64478447ce23',
+    debug: 3
+});
+
+peer.on('open', function(){
+    postRoomId(peer.id);
+    $('#my-id').text(peer.id);
+});
+
+peer.on('error', function(err){
+    alert(err.message);
+});
+
+peer.on('close', function(){
+});
+
+peer.on('disconnected', function(){
+});
+
+peer.on('call', function(call){
+    call.answer(localStream);
+    partnerUserName = call.metadata.partnerUserName;
+    partnerUserId = call.metadata.partnerUserId;
+    setupCallEventHandlers(call);
+});
+
+if (roomName != "wait") {
+    setTimeout(callPartner, 1*1000);
+}
+
+function callPartner() {
     const call = peer.call(roomName, localStream, {
         metadata: {
             partnerUserName: partnerUserName,
+            partnerUserId: partnerUserId
         }
     });
     setupCallEventHandlers(call);
 }
-
-$('#make-call').submit(function(e){
-    e.preventDefault();
-    const call = peer.call($('#callto-id').val(), localStream);
-    setupCallEventHandlers(call);
-});
 
 $('#end-call').click(function(){
     existingCall.close();
@@ -90,7 +114,8 @@ function updateAudioEnable(enable) {
 function endStandby() {
     $('.standby-container').hide();
     $('.conversation-container').show();
-    $('#partner-user-name').text = partnerUserName;
+    $('#partner-user-name').text(partnerUserName);
+    $('#review-partner-user-name').text(partnerUserName + "さんの評価をよろしくお願い致します。");
 }
 
 function endPeer() {
@@ -112,34 +137,6 @@ $('#send-button').on('click', function() {
     $("[name=userId]").val(partnerUserId);
     $('#review-form').submit();
 });
-
-function createPeer() {
-    peer = new Peer({
-        key: '339d7027-558e-4bc8-a59a-64478447ce23',
-        debug: 3
-    });
-
-    peer.on('open', function(){
-        postRoomId(peer.id);
-        $('#my-id').text(peer.id);
-    });
-
-    peer.on('error', function(err){
-        alert(err.message);
-    });
-
-    peer.on('close', function(){
-    });
-
-    peer.on('disconnected', function(){
-    });
-
-    peer.on('call', function(call){
-        call.answer(localStream);
-        setupCallEventHandlers(call);
-        partnerUserName = call.metadata.partnerUserName;
-    });
-}
 
 function postRoomId(id) {
     var url= 'http://localhost:8080/notify_room_name';
