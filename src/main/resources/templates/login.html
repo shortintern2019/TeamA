@@ -3,9 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head lang="ja">
-
     <link th:href="@{/css/login.css}" rel="stylesheet"/>
-
 </head>
 
 <body>
@@ -39,7 +37,6 @@
                         </div>
                     </div>
                 </div>
-
             </form>
 
             <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
