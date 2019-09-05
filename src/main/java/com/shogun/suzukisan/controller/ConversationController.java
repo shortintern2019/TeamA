@@ -20,4 +20,9 @@ public class ConversationController {
         return "conversation";
     }
 
+    @GetMapping("/review")
+    public String review(Model model) {
+        return "review";
+    }
+
 }
