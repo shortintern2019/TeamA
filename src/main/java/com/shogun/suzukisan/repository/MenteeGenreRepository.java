@@ -1,9 +1,6 @@
 package com.shogun.suzukisan.repository;
 
-import com.shogun.suzukisan.entity.Genre;
-import com.shogun.suzukisan.entity.Mentee;
-import com.shogun.suzukisan.entity.MenteeGenre;
-import com.shogun.suzukisan.entity.MentorGenre;
+import com.shogun.suzukisan.entity.*;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,8 +12,8 @@ public interface MenteeGenreRepository extends CrudRepository<MenteeGenre, Long>
     List<MenteeGenre> findByMenteeId(Mentee mentee);
     List<MenteeGenre> findByGenreId(Genre genre);
     @Transactional
-    @Query("SELECT mg FROM MenteeGenre mg WHERE mg.genreId.name = :name")
-    List<MentorGenre> findByGenreName(String name);
+    @Query("SELECT mg FROM MenteeGenre mg WHERE mg.genreId.name in :name")
+    List<MenteeGenre> findByGenreName(List<String> name);
 
     @Modifying
     @Transactional

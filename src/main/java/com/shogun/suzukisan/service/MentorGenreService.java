@@ -1,8 +1,6 @@
 package com.shogun.suzukisan.service;
 
-import com.shogun.suzukisan.entity.Genre;
-import com.shogun.suzukisan.entity.Mentor;
-import com.shogun.suzukisan.entity.MentorGenre;
+import com.shogun.suzukisan.entity.*;
 import com.shogun.suzukisan.repository.MentorGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +31,7 @@ public class MentorGenreService {
     public List<MentorGenre> findByGenreId(Genre genre) {
         return mentorGenreRepository.findByGenreId(genre);
     }
-    public List<MentorGenre> findByGenreName(String name) {
+    public List<MentorGenre> findByGenreName(List<String> name) {
         return mentorGenreRepository.findByGenreName(name);
     }
 
