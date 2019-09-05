@@ -1,6 +1,6 @@
 $('#send-button').on('click', function() {
 
-    if ($("[name=soudan]:checked").length == 0) {
+    if ($("[name=role]:checked").length == 0) {
         alert("相談を聞く側か、される側か選択してください。");
         return
     }

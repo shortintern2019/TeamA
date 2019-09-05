@@ -124,12 +124,12 @@ public class SuzukisanApplication {
             User test3User = userService.create(new User("MentorGenreTest3", "mentorGenreTest3@example.com", "hashedPass"));
             User test4User = userService.create(new User("MentorGenreTest4", "mentorGenreTest4@example.com", "hashedPass"));
             // CREATE GENRE
-            Genre genre1 = genreService.create(new Genre("恋愛"));
-            Genre genre2 = genreService.create(new Genre("勉強"));
-            Genre genre3 = genreService.create(new Genre("人間関係"));
-            Genre genre4 = genreService.create(new Genre("人生"));
-            Genre genre5 = genreService.create(new Genre("将来"));
-            Genre genre6 = genreService.create(new Genre("その他"));
+
+            Genre genre1 = genreService.create(new Genre("恋愛", "/images/genre/renai.jpg"));
+            Genre genre2 = genreService.create(new Genre("学校", "/images/genre/school.jpg"));
+            Genre genre3 = genreService.create(new Genre("就活", "/images/genre/shu-katsu.jpg"));
+            Genre genre4 = genreService.create(new Genre("勉強", "/images/genre/study.jpg"));
+            Genre genre5 = genreService.create(new Genre("いじめ", "/images/genre/izime.jpg"));
             // CREATE Mentor
             Mentor mentor1 = mentorService.create(new Mentor(test1User, "mentorGenreRoom1Name"));
             Mentor mentor2 = mentorService.create(new Mentor(test2User, "mentorGenreRoom2Name"));
