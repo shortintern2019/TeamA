@@ -35,19 +35,11 @@
                 <div class="row genre-container" style="padding-bottom: 100px">
                     <div class="mx-auto">
                         <div class="selection-group">
-                            <div class="form-check form-check-inline">
-                                <input id="love" type="checkbox" name="genre" value="love">
-                                <label for="love">
-                                    <img src="http://image.uranai.jp/package/LRP000000051/image/IZ0003052_s.jpg">
-                                    <p class="text-center">恋愛</p>
-                                </label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input id="ve" type="checkbox" name="genre" value="ve">
-                                <label for="ve">
-                                    <img src="http://image.uranai.jp/package/LRP000000051/image/IZ0003052_s.jpg">
-                                    <p class="text-center">恋愛</p>
+                            <div class="form-check form-check-inline" th:each="genre:${genres}">
+                                <input th:id="${genre.id}" type="checkbox" name="genre" th:value="${genre.name}">
+                                <label th:for="${genre.id}">
+                                    <img th:src="@{${genre.imageUrl}}">
+                                    <p class="text-center" th:text="${genre.name}"></p>
                                 </label>
                             </div>
                         </div>

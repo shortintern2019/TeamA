@@ -86,9 +86,9 @@ public class SuzukisanApplicationTests {
         User test3User = userRepository.save(new User("MentorGenreTest3", "mentorGenreTest3@example.com", "hashedPass"));
         User test4User = userRepository.save(new User("MentorGenreTest4", "mentorGenreTest4@example.com", "hashedPass"));
         // CREATE GENRE
-        Genre genre1 = genreRepository.save(new Genre("MentorGenreTest1"));
-        Genre genre2 = genreRepository.save(new Genre("MentorGenreTest2"));
-        Genre genre3 = genreRepository.save(new Genre("MentorGenreTest3"));
+        Genre genre1 = genreRepository.save(new Genre("MentorGenreTest1", ""));
+        Genre genre2 = genreRepository.save(new Genre("MentorGenreTest2", ""));
+        Genre genre3 = genreRepository.save(new Genre("MentorGenreTest3", ""));
         // CREATE Mentor
         Mentor mentor1 = mentorService.create(new Mentor(test1User, "mentorGenreRoom1Name"));
         Mentor mentor2 = mentorService.create(new Mentor(test2User, "mentorGenreRoom2Name"));
