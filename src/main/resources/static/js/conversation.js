@@ -16,25 +16,16 @@ navigator.mediaDevices.getUserMedia({video: false, audio: true})
     return;
 });
 
-peer = new Peer({
-    key: '339d7027-558e-4bc8-a59a-64478447ce23',
-    debug: 3
-});
-
-peer.on('open', function(){
-    postRoomId(peer.id);
-    $('#my-id').text(peer.id);
-});
-
-peer.on('error', function(err){
-    alert(err.message);
-});
-
-peer.on('close', function(){
-});
-
-peer.on('disconnected', function(){
-});
+if (roomName == "wait") {
+    createPeer()
+} else {
+    const call = peer.call(roomName, localStream, {
+        metadata: {
+            partnerUserName: partnerUserName,
+        }
+    });
+    setupCallEventHandlers(call);
+}
 
 $('#make-call').submit(function(e){
     e.preventDefault();
@@ -46,15 +37,10 @@ $('#end-call').click(function(){
     existingCall.close();
 });
 
-peer.on('call', function(call){
-    call.answer(localStream);
-    setupCallEventHandlers(call);
-});
-
 function setupCallEventHandlers(call){
     if (existingCall) {
         return
-    };
+    }
 
     call.on('close', function(){
         endPeer()
@@ -104,6 +90,7 @@ function updateAudioEnable(enable) {
 function endStandby() {
     $('.standby-container').hide();
     $('.conversation-container').show();
+    $('#partner-user-name').text = partnerUserName;
 }
 
 function postRoomId(id) {
@@ -112,12 +99,40 @@ function postRoomId(id) {
         url: url,
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify({user_id: userId, room_id: id}),
+        data: JSON.stringify({user: userId, room: id}),
         timeout: 3000,
     }).done(function (data) {
 
     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
 
+    });
+}
+
+function createPeer() {
+    peer = new Peer({
+        key: '339d7027-558e-4bc8-a59a-64478447ce23',
+        debug: 3
+    });
+
+    peer.on('open', function(){
+        postRoomId(peer.id);
+        $('#my-id').text(peer.id);
+    });
+
+    peer.on('error', function(err){
+        alert(err.message);
+    });
+
+    peer.on('close', function(){
+    });
+
+    peer.on('disconnected', function(){
+    });
+
+    peer.on('call', function(call){
+        call.answer(localStream);
+        partnerUserName = call.metadata.partnerUserName;
+        setupCallEventHandlers(call);
     });
 }
 
