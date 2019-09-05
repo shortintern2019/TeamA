@@ -24,6 +24,6 @@ public interface MentorRepository extends CrudRepository<Mentor, Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Mentor h SET h.roomName = roomName where h = mentorId")
-    Integer updateRoomName(@Param("roomName") String roomName, @Param("mentorId") Long mentorId);
+    @Query("UPDATE Mentor h SET h.roomName = :roomName where h.userId = :userId")
+    Integer updateRoomName(@Param("roomName") String roomName, @Param("userId") User userId);
 }

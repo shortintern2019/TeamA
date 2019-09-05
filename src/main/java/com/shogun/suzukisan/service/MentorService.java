@@ -33,8 +33,8 @@ public class MentorService {
     }
 
     // UPDATE
-    public Integer updateRoomName(String roomName, Long mentorId) {
-        return mentorRepository.updateRoomName(roomName, mentorId);
+    public Integer updateRoomName(String roomName, User userId) {
+        return mentorRepository.updateRoomName(roomName, userId);
     }
 
     // DELETE

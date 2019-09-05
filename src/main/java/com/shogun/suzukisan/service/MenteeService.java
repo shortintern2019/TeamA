@@ -33,8 +33,8 @@ public class MenteeService {
     }
 
     // UPDATE
-    public Integer updateRoomName(String roomName, Long menteeId) {
-        return menteeRepository.updateRoomName(roomName, menteeId);
+    public Integer updateRoomName(String roomName, User userId) {
+        return menteeRepository.updateRoomName(roomName, userId);
     }
 
     // DELETE
