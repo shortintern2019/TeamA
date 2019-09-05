@@ -60,22 +60,22 @@ public interface UserRepository extends CrudRepository<User, Long> {
     // update mentorScore
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.mentorScore = :mentorScore where h = :userId")
+    @Query("UPDATE User h SET h.mentorScore = :mentorScore where h.id = :userId")
     Integer updateMentorScore(@Param("mentorScore") Integer mentorScore, @Param("userId") Long userId);
     // update menteeScore
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.menteeScore = :menteeScore where h = :userId")
+    @Query("UPDATE User h SET h.menteeScore = :menteeScore where h.id = :userId")
     Integer updateMenteeScore(@Param("menteeScore") Integer menteeScore, @Param("userId") Long userId);
     // update mentorCounter
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.mentorCount = :mentorCount where h = :userId")
+    @Query("UPDATE User h SET h.mentorCount = :mentorCount where h.id = :userId")
     Integer updateMentorCount(@Param("mentorCount") Integer mentorCount, @Param("userId") Long userId);
     // update menteeCounter
     @Modifying
     @Transactional
-    @Query("UPDATE User h SET h.menteeCount = :menteeCount where h = :userId")
+    @Query("UPDATE User h SET h.menteeCount = :menteeCount where h.id = :userId")
     Integer updateMenteeCount(@Param("menteeCount") Integer menteeCount, @Param("userId") Long userId);
 
     // DELETE
