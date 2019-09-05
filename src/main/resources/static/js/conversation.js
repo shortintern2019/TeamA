@@ -119,11 +119,12 @@ $('.review-container').modaal({
 
 $('#send-button').on('click', function() {
 
-    if ($("[name=ratingScore]:checked").length == 0) {
+    if($("[name=ratingScore]:checked").length == 0) {
         alert("スコアを選択してください。");
         return
     }
 
+    $("[name=userId]").val(partnerUserId);
     $('#review-form').submit();
 });
 

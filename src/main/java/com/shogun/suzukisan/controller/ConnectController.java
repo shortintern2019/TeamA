@@ -60,7 +60,24 @@ public class ConnectController {
             roomName = beMentor(Arrays.asList(genres), user);
         }
 
+        if (roomName != "wait") {
+            if(role == roleEnum.mentee) {
+                // 相手はmentor
+                roomService.findByName(roomName).ifPresent(room -> {
+                    model.addAttribute("partner_user_id", room.getMentorId().getId());
+                    model.addAttribute("partner_user_name", room.getMentorId().getName());
+                });
+            } else if(role == roleEnum.mentor) {
+                // 相手はmentee
+                roomService.findByName(roomName).ifPresent(room -> {
+                    model.addAttribute("partner_user_id", room.getMenteeId().getId());
+                    model.addAttribute("partner_user_name", room.getMenteeId().getName());
+                });
+            }
+        }
+
         model.addAttribute("user_id", user.getId());
+        model.addAttribute("room_name", roomName);
         model.addAttribute("room_name", roomName);
 
         System.out.println("room Status");
