@@ -60,6 +60,7 @@ public class ConnectController {
             roomName = beMentor(Arrays.asList(genres), user);
         }
 
+        model.addAttribute("user_id", user.getId());
         model.addAttribute("room_name", roomName);
 
         System.out.println("room Status");
@@ -68,7 +69,7 @@ public class ConnectController {
         }
         System.out.println("------------------");
 
-        return "hello";
+        return "conversation";
     }
 
     public String beMentee(List<String> genres, User user) {
