@@ -24,13 +24,13 @@ public class Room {
     private String name;
     @NotNull
     @ManyToOne
-    private Mentor mentorId;
+    private User mentorId;
     @NotNull
     @ManyToOne
-    private Mentee menteeId;
+    private User menteeId;
 
     @Autowired
-    public Room(String name, Mentor mentorId, Mentee menteeId) {
+    public Room(String name, User mentorId, User menteeId) {
         this.name = name;
         this.mentorId = mentorId;
         this.menteeId = menteeId;

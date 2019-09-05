@@ -10,8 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Optional;
+
 @Service
-public class UserServiceImpl implements UserDetailsService
+public class  UserServiceImpl implements UserDetailsService
 {
     private UserRepository userRepository;
 
@@ -23,13 +25,13 @@ public class UserServiceImpl implements UserDetailsService
             throw new UsernameNotFoundException("");
         }
 
-        User user = userRepository.findByEmail(username);
-        if (user == null)
+        Optional<User> user = userRepository.findByEmail(username);
+        if (!user.isPresent())
         {
             throw new UsernameNotFoundException("");
         }
 
-        return user;
+        return user.get();
     }
 
     @Autowired
