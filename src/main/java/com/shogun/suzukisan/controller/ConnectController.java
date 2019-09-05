@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
@@ -126,7 +127,8 @@ public class ConnectController {
         if(topMentee == (long) -1) {
             System.out.println("no mentee");
             // Mentorを作成
-            Mentor newMentor = mentorService.create(new Mentor(user, "newRoom"));
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Mentor newMentor = mentorService.create(new Mentor(user, timestamp.toString()));
             // MentorGenreを作成
             for(String genre : genres) {
                 // GenreのIdを検索してmentorに紐付ける
