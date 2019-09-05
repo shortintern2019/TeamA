@@ -30,6 +30,8 @@ public class ConnectController {
     RoomService roomService;
     @Autowired
     UserService userService;
+    @Autowired
+    RoomGenreService roomGenreService;
 
     public enum roleEnum {
         mentee,
@@ -58,6 +60,7 @@ public class ConnectController {
             roomName = beMentor(Arrays.asList(genres), user);
         }
 
+        model.addAttribute("user_id", user.getId());
         model.addAttribute("room_name", roomName);
 
         System.out.println("room Status");
@@ -66,15 +69,16 @@ public class ConnectController {
         }
         System.out.println("------------------");
 
-        return "hello";
+        return "conversation";
     }
 
     public String beMentee(List<String> genres, User user) {
         Long topMentor = searchBestMentor(genres);
         if(topMentor == (long) -1) {
             System.out.println("no mentor");
-            // Menteeを作成
-            Mentee newMentee = menteeService.create(new Mentee(user, "newRoom"));
+            // Mentorを作成
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Mentee newMentee = menteeService.create(new Mentee(user, timestamp.toString()));
             // MenteeGenreを作成
             for(String genre : genres) {
                 // GenreのIdを検索してmenteeに紐付ける
@@ -114,7 +118,7 @@ public class ConnectController {
                 for (String g : genres) {
                     if(mg.getGenreId().getName() == g) {
                         matchedGenre.add(mg.getGenreId());
-                        mentorGenreService.create(new MentorGenre(topMentorEntity, mg.getGenreId()));
+                        roomGenreService.create(new RoomGenre(newRoom, mg.getGenreId()));
                     }
                 }
             }
@@ -168,7 +172,7 @@ public class ConnectController {
                 for (String g : genres) {
                     if(mg.getGenreId().getName() == g) {
                         matchedGenre.add(mg.getGenreId());
-                        menteeGenreService.create(new MenteeGenre(topMenteeEntity, mg.getGenreId()));
+                        roomGenreService.create(new RoomGenre(newRoom, mg.getGenreId()));
                     }
                 }
             }

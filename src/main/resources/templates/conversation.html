@@ -3,6 +3,22 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head lang="ja">
+    <style>
+        button {
+            padding: 0;
+            border: none;
+            background: transparent;
+            outline:none;
+        }
+
+        button img {
+            display: block;
+            outline:none;
+        }
+
+    </style>
+    <link th:href="@{/css/standby.css}" rel="stylesheet"/>
+    <link th:href="@{/css/three-dots.css}" rel="stylesheet"/>
     <link th:href="@{/css/conversation.css}" rel="stylesheet"/>
 </head>
 
@@ -10,7 +26,19 @@
 
 <div layout:decorator="layout">
     <div layout:fragment="contents">
-        <div class="container">
+        <div class="container standby-container">
+            <div class="dot-spin"></div>
+
+            <div class="text_standby">
+                <h3>
+                    <p>
+                        お待ちください..
+                    </p>
+                </h3>
+            </div>
+        </div>
+
+        <div class="container conversation-container" style="display: none;">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="center-block" id="video-container">
@@ -20,37 +48,47 @@
                 </div>
             </div>
 
-            <p th:text="${genre}"></p>
-            <p th:text="${soudan}"></p>
-
             <div class="row">
                 <div class="mx-auto">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                aaaaaaaaaaaさん
+                                <p id="partner-user-name" th:text="${partner_user_name}"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-                <p>Your id: <span id="my-id">...</span></p>
-                <form id="make-call" class="pure-form">
-                    <input type="text" placeholder="Call user id..." id="callto-id">
-                    <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
-                </form>
-                <form id="end-call" class="pure-form">
-                    <p>Currently in call with <span id="their-id">...</span></p>
-                    <button href="#" class="pure-button pure-button-success" type="submit">End Call</button>
-                </form>
+            <div class="row">
+                <div class="mx-auto">
 
+                    <!--<form action="" id="end-call" class="pure-form">-->
+                        <button>
+                            　<img id="end-call" th:src="@{/images/tel.jpg}" width="64" height="64">
+                        </button>
+                        <p>
+                            <!--<input type="image" th:src="@{/images/tel.jpg}" width="64" height="64" alt="切るボタン">-->
+                        </p>
+                    <!--</form>-->
+                </div>
+            </div>
         </div>
+
+        <p>Your id: <span id="my-id">...</span></p>
+        <form id="make-call" class="pure-form">
+            <input type="text" placeholder="Call user id..." id="callto-id">
+            <button href="#" class="pure-button pure-button-success" type="submit">Call</button>
+        </form>
+            <!--<p>Currently in call with <span id="their-id">...</span></p>-->
+            <!--<button href="#" class="pure-button pure-button-success" type="submit">End Call</button>-->
     </div>
     <div layout:fragment="moreScripts">
         <script type="text/javascript" src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
         <script th:inline="javascript">
-            var userId = '1';
+            var partnerUserName = [[${partner_user_name}]];
+            var roomName = [[${room_name}]];
+            var userId = [[${user_id}]];
         </script>
         <script th:src="@{/js/conversation.js}"></script>
     </div>

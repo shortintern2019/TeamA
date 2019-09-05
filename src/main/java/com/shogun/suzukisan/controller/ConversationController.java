@@ -10,19 +10,12 @@ import com.shogun.suzukisan.entity.User;
 @Controller
 public class ConversationController {
 
-    @GetMapping("/standby")
-    public String standby() {
-        return "standby";
-    }
-
     @GetMapping("/conversation")
     public String conversation(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication.getPrincipal() instanceof User){
             User user = User.class.cast(authentication.getPrincipal());
-            model.addAttribute("userInfo", "現在ログインしているユーザ名：" + user.getUsername() + "をコントローラクラスから取得しました。");
-        }else{
-            model.addAttribute("userInfo", "");
+            model.addAttribute("userId", "現在ログインしているユーザ名：" + user.getUsername() + "をコントローラクラスから取得しました。");
         }
         return "conversation";
     }
