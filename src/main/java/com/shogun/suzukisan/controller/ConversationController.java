@@ -10,6 +10,11 @@ import com.shogun.suzukisan.entity.User;
 @Controller
 public class ConversationController {
 
+    @GetMapping("/standby")
+    public String standby() {
+        return "standby";
+    }
+
     @GetMapping("/conversation")
     public String conversation(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

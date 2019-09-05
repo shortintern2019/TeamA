@@ -32,6 +32,11 @@ public class MenteeService {
         return menteeRepository.findByRoomName(roomName);
     }
 
+    // UPDATE
+    public Integer updateRoomName(String roomName, Long menteeId) {
+        return menteeRepository.updateRoomName(roomName, menteeId);
+    }
+
     // DELETE
     //    TODO: リレーションを消してからでないとエラー(参照整合性制約違反)が起こる
     public void deleteById(Long id) {

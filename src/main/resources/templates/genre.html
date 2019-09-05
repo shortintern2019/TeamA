@@ -4,147 +4,65 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head lang="ja">
-    <style>
-      .flexbox{
-      display: -webkit-flex;
-      display: flex;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-align-items: stretch;
-      align-items: stretch;
-      border: 1px solid #aaa;
-      text-align: center;
-      height: 240px;
-      padding: 70px;
-      margin: 10px;
-    }
-     </style>
-
-    <style>
-      img {
-        width: 300px;
-        height: 250px;
-        object-fit: cover; /* この一行を追加するだけ！ */
-      }
-
-
-      /* 画像部分に余白を持たせる */
-      label img {
-        margin: 3px;
-        padding: 8px;
-      }
-
-      /* 選択されたラジオボタン&チェックボックスの画像の背景をオレンジ色に変える */
-      .selection-group input[type="checkbox"]:checked + label img {
-        background: orange;
-      }
-      .selection-group input[type="radio"]:checked + label img {
-        background: orange;
-      }
-
-
-      /*ボタン削除*/
-      .selection-group input[type="checkbox"] {
-        display: none;
-      }
-      .selection-group input[type="radio"] {
-        display: none;
-      }
-
-
-    </style>
+    <link th:href="@{/css/matching.css}" rel="stylesheet"/>
 </head>
 
-
-
-<body bgcolor="ccff000">
+<body>
 <div layout:decorator="layout">
     <div layout:fragment="contents">
+        <div class="container">
+            <form id="matching-preference-form" action="" th:action="@{/connect}" method="post">
+                <div class="matching-type-container" style="margin-top: 50px; margin-bottom: 100px; background-color: #f2f2f2; padding: 50px;">
+                    <h2>相談立場</h2>
+                    <div class="row">
+                        <div class="mx-auto">
+                            <div class="selection-group">
+                                <div class="form-check form-check-inline">
+                                    <input id="mentor" class="form-check-input" type="radio" name="role" value="mentor">
+                                    <label for="mentor">
+                                        <img th:src="@{/images/mentor.png}">
+                                    </label>
+                                </div>
 
+                                <div class="form-check form-check-inline">
+                                    <input id="mentee" class="form-check-input" type="radio" name="role" value="mentee">
+                                    <label for="mentee">
+                                        <img th:src="@{/images/mentee.png}">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="selection-group flexbox">
-            <div>
-                <input id="a" type="radio" name="soudan" value="a">
-                <label for="a">
-                    <img src="https://kotobank.jp/image/dictionary/daijisen/media/104818L.jpg">
-                    <p>相談する</p>
-                </label>
-            </div>
+                <div class="row genre-container" style="margin-bottom: 100px; background-color: #f2f2f2; padding: 50px;">
+                    <h2>相談ジャンルの選択(複数選択可能)</h2>
+                    <div class="mx-auto">
+                        <div class="selection-group">
+                            <div class="form-check form-check-inline" th:each="genre:${genres}">
+                                <input th:id="${genre.id}" type="checkbox" name="genre" th:value="${genre.name}">
+                                <label th:for="${genre.id}">
+                                    <img th:src="@{${genre.imageUrl}}">
+                                    <p class="text-center" th:text="${genre.name}"></p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
-            <div>
-                <input id="b" type="radio" name="soudan" value="b">
-                <label for="b">
-                    <img src="https://kotobank.jp/image/dictionary/daijisen/media/104806L.jpg">
-                    <p>相談される</p>
-                </label>
-            </div>
-        </div>
-
-
-
-
-        <div class="selection-group flexbox">
-
-            <div>
-                <input id="c" type="checkbox" name="rennai" value="c">
-                <label for="c">
-                    <img src="http://image.uranai.jp/package/LRP000000051/image/IZ0003052_s.jpg">
-                    <p>恋愛</p>
-                </label>
-            </div>
-
-            <div>
-                <input id="d" type="checkbox" name="gakkou" value="d">
-                <label for="d">
-                    <img src="https://www.fgmeisei.ed.jp/wp-content/uploads/general-course-main.jpg">
-                    <p>学校</p>
-                </label>
-            </div>
-
-            <div>
-                <input id="e" type="checkbox" name="shuukatu" value="e">
-                <label for="e">
-                    <img src="https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2Fcontent%2Fpic%2F20190329%2F96958A9F889DE6E0EAE5E2E6E6E2E0E7E2E1E0E2E3EBE2E2E2E2E2E2-DSXZZO4287320025032019000000-PB1-2.jpg?auto=format%2Ccompress&ch=Width%2CDPR&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=433&ixlib=php-1.2.1&w=650&s=649d929c29858e60e113cb2b0b87ce55">
-                    <p>就活</p>
-                </label>
-            </div>
-
-            <div>
-                <input id="f" type="checkbox" name="bennkyou" value="f">
-                <label for="f">
-                    <img src="https://fki.ismcdn.jp/mwimgs/6/3/600m/img_63461abaa9d3589471c2dc05ce4936b8131201.jpg">
-                    <p>勉強</p>
-                </label>
-            </div>
-
-            <div>
-                <input id="g" type="checkbox" name="izime" value="g">
-                <label for="g">
-                    <img src="https://s.eximg.jp/exnews/feed/Wooris/Wooris_244268_2e7e_1.jpg">
-                    <p>いじめ</p>
-                </label>
+            <div class="row submit-container">
+                <div class="mx-auto">
+                    <button id="send-button" class="btn btn-primary" style="width: 100px">始める</button>
+                </div>
             </div>
         </div>
-
     </div>
-
-
-    <br><br><br>
-
-    <center>
-        <a class="btn btn-lg" href="#" role="button">Link</a>
-        <button class="btn-primary" type="submit">Button</button>
-        <input type="submit" value="開始！">
-    </center>
-
-
 
     <div layout:fragment="moreScripts">
+        <script th:src="@{/js/matching.js}"></script>
     </div>
-</div>
 
-<script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
-<div layout:fragment="moreScripts" th:remove="tag"></div>
+</div>
 </body>
 </html>

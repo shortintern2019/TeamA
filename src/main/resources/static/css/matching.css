@@ -1,0 +1,43 @@
+.flexbox{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    border: 1px solid #aaa;
+    text-align: center;
+    height: 240px;
+    padding: 70px;
+    margin: 10px;
+}
+
+img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover; /* この一行を追加するだけ！ */
+}
+
+
+/* 画像部分に余白を持たせる */
+label img {
+    margin: 3px;
+    padding: 8px;
+}
+
+/* 選択されたラジオボタン&チェックボックスの画像の背景をオレンジ色に変える */
+.selection-group input[type="checkbox"]:checked + label img {
+    background: orange;
+}
+.selection-group input[type="radio"]:checked + label img {
+    background: orange;
+}
+
+
+/*ボタン削除*/
+.selection-group input[type="checkbox"] {
+    display: none;
+}
+.selection-group input[type="radio"] {
+    display: none;
+}

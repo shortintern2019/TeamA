@@ -3,10 +3,7 @@ package com.shogun.suzukisan;
 import com.shogun.suzukisan.entity.*;
 import com.shogun.suzukisan.repository.GenreRepository;
 import com.shogun.suzukisan.repository.UserRepository;
-import com.shogun.suzukisan.service.ConversationLogService;
-import com.shogun.suzukisan.service.MentorGenreService;
-import com.shogun.suzukisan.service.MentorService;
-import com.shogun.suzukisan.service.RoomService;
+import com.shogun.suzukisan.service.*;
 import javafx.application.Application;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,6 +30,10 @@ public class SuzukisanApplicationTests {
     MentorService mentorService;
     @Autowired
     MentorGenreService mentorGenreService;
+    @Autowired
+    MenteeService menteeService;
+    @Autowired
+    MenteeGenreService menteeGenreService;
     @Autowired
     RoomService roomService;
     @Autowired
@@ -86,9 +90,9 @@ public class SuzukisanApplicationTests {
         User test3User = userRepository.save(new User("MentorGenreTest3", "mentorGenreTest3@example.com", "hashedPass"));
         User test4User = userRepository.save(new User("MentorGenreTest4", "mentorGenreTest4@example.com", "hashedPass"));
         // CREATE GENRE
-        Genre genre1 = genreRepository.save(new Genre("MentorGenreTest1"));
-        Genre genre2 = genreRepository.save(new Genre("MentorGenreTest2"));
-        Genre genre3 = genreRepository.save(new Genre("MentorGenreTest3"));
+        Genre genre1 = genreRepository.save(new Genre("MentorGenreTest1", ""));
+        Genre genre2 = genreRepository.save(new Genre("MentorGenreTest2", ""));
+        Genre genre3 = genreRepository.save(new Genre("MentorGenreTest3", ""));
         // CREATE Mentor
         Mentor mentor1 = mentorService.create(new Mentor(test1User, "mentorGenreRoom1Name"));
         Mentor mentor2 = mentorService.create(new Mentor(test2User, "mentorGenreRoom2Name"));
@@ -164,7 +168,7 @@ public class SuzukisanApplicationTests {
 //        // mentorGenreをすべて表示
 //        // mentorGenre1, mentorGenre2は消えているはず
 //        log.info("relationTest");
-//        for (MentorGenre mentorGenre : mentorGenreService.findByAll()) { // 2個
+//        for (MentorGenre mentorGenre : mentorGenreService.findAll()) { // 2個
 //            log.info(mentorGenre.toString());
 //        }
 //        log.info("--------------------------");
@@ -282,5 +286,63 @@ public class SuzukisanApplicationTests {
             log.info(conversationLog.toString());
         }
         log.info("--------------------------");
+    }
+
+    @Test
+    public void canUserBeMentorTest() {
+        Long topMentor = searchBestMentor(Arrays.asList("ッッ"));
+        if(topMentor == (long) -1) {
+            log.info("no mentor");
+//            menteeService.create(new Mentee())
+        } else {
+            log.info("found: MentorId=" + topMentor.toString());
+        }
+
+        // Menteeがいる場合
+        // -> MenteeName, MenteeRate, RoomNameを返す
+        // -> Roomを作る
+        // -> Menteeを削除
+        // -> MenteeGenreを
+
+        // Mentorがいない場合
+        // -> Menteeを作成
+        // -> MenteeGenreを作成
+    }
+
+    Long searchBestMentor(List<String> genre) {
+        // Menteeを検索
+        List<MentorGenre> mentorGenreList = mentorGenreService.findByGenreName(genre);
+
+        // 候補の総合評価を算出
+        // 総合評価 += メンタースコア*メンター回数
+        Map<Long, Integer> evaluation = new HashMap<>(); // <MentorId, Evaluation>
+
+        for(MentorGenre mgl : mentorGenreList) {
+            Integer additionalValue = mgl.getMentorId().getUserId().getMentorScore();
+            if(additionalValue == 0) { additionalValue = 1; }
+            Integer mentorCount = mgl.getMentorId().getUserId().getMentorCount();
+            if(mentorCount == 0) { mentorCount = 1; }
+
+            if(evaluation.containsKey(mgl.getMentorId().getId())) {
+                // 2回目以降
+                Integer currentValue = evaluation.get(mgl.getMentorId().getId());
+                evaluation.put(mgl.getMentorId().getId(), currentValue + additionalValue*mentorCount);
+            } else {
+                // 初回
+                evaluation.put(mgl.getMentorId().getId(), additionalValue*mentorCount);
+            }
+        }
+
+        // Top Mentorを検索
+        Long topMentorId = (long) -1;
+        Integer topMentorValue = 0;
+        for(Map.Entry<Long, Integer> entry : evaluation.entrySet()) {
+            if(entry.getValue() >= topMentorId) {
+                topMentorId = entry.getKey();
+                topMentorValue = entry.getValue();
+            }
+        }
+
+        return topMentorId;
     }
 }

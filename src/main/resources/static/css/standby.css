@@ -1,0 +1,25 @@
+
+
+
+div.text_standby{
+  font-size:40px;
+  font-weight:100;
+  text-align: center;
+  position:relative;
+  top:200px;
+
+}
+
+div.dot-spin{
+  margin: 0 auto;
+  position:relative;
+  top:170px;
+}
+
+div.image_tel{
+
+   text-align: center;
+   position:relative;
+   top:350px;
+
+}
