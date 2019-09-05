@@ -131,15 +131,20 @@ public class ConnectController {
             // Roomを作る
             Room newRoom = roomService.create(new Room(tmpRoomName, topMentorUser, user));
             // RoomにGenreを紐付ける
-            List<Genre> matchedGenre = null;
+            Set<String> matchedGenre = new HashSet<String>();
+            System.out.println("MentorGenre");
             for(MentorGenre mg : topMentorGenreList) {
-                for (String g : genres) {
-                    if(mg.getGenreId().getName() == g) {
-                        matchedGenre.add(mg.getGenreId());
-                        roomGenreService.create(new RoomGenre(newRoom, mg.getGenreId()));
+                matchedGenre.add(mg.getGenreId().getName());
+            }
+            for (String g : genres) {
+                for(Iterator<String> iterator = matchedGenre.iterator(); iterator.hasNext(); ) {
+                    String value = iterator.next();
+                    if(value.equals(g)) {
+                        roomGenreService.create(new RoomGenre(newRoom, genreService.findByName(value).get()));
                     }
                 }
             }
+            System.out.println("------------");
             return tmpRoomName;
         }
     }
