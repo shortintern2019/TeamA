@@ -108,6 +108,25 @@ function postRoomId(id) {
     });
 }
 
+function endPeer() {
+    // window.location.href = '/';
+    $('.review-container').click()
+}
+
+$('.review-container').modaal({
+    is_locked: true
+});
+
+$('#send-button').on('click', function() {
+
+    if ($("[name=ratingScore]:checked").length == 0) {
+        alert("スコアを選択してください。");
+        return
+    }
+
+    $('#review-form').submit();
+});
+
 function createPeer() {
     peer = new Peer({
         key: '339d7027-558e-4bc8-a59a-64478447ce23',
@@ -131,11 +150,7 @@ function createPeer() {
 
     peer.on('call', function(call){
         call.answer(localStream);
-        partnerUserName = call.metadata.partnerUserName;
         setupCallEventHandlers(call);
+        partnerUserName = call.metadata.partnerUserName;
     });
-}
-
-function endPeer() {
-    window.location.href = '/';
 }
