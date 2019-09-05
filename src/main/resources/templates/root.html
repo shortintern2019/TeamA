@@ -1,25 +1,158 @@
-<!doctype html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-<head>
+<head lang="ja">
+    <style>
+        .box1 {
+        width: 100vw;
+        height: 120vh;
+
+        display: flex; /* 要素をflexboxに対応させる */
+        align-items: center; /* 縦方向の中央揃え */
+        justify-content: center; /* 横方向の中央揃え */
+        flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+
+        background-image: url(https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
+        background-size: cover;
+        background-position: center;
+        }.
+    </style>
+
+    <style>
+        .box2 {
+        width: 100vw;
+        height: 50vh;
+
+        display: flex; /* 要素をflexboxに対応させる */
+        align-items: center; /* 縦方向の中央揃え */
+        justify-content: center; /* 横方向の中央揃え */
+        flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+
+        background-image: url(https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
+        background-size: cover;
+        background-position: center;
+        }.
+    </style>
+
+    <style>
+        .box3 {
+        width: 100vw;
+        height: 50vh;
+
+        display: flex; /* 要素をflexboxに対応させる */
+        align-items: center; /* 縦方向の中央揃え */
+        justify-content: center; /* 横方向の中央揃え */
+        flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+
+        background-image: url(https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
+        background-size: cover;
+        background-position: center;
+        }.
+    </style>
+
+    <style>
+        .text1 {
+	    font-family: serif;
+	    }
+    </style>
+
+    <style>
+        .btn-square-raised {
+          display: inline-block;
+          padding: 0.5em 1em;
+          text-decoration: none;
+          background: #668ad8;/*ボタン色*/
+          color: #668ad8;/*ボタン色と同じに*/
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+          border-bottom: solid 3px #627295;
+          border-radius: 3px;/*角の丸み*/
+          font-weight: bold;
+          text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
+        }
+
+        .btn-square-raised:active {
+          /*ボタンを押したとき*/
+          -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+          box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+          border-bottom: none;
+        }
+    </style>
+
+
 </head>
 
 <body>
-
 <div layout:decorator="layout">
     <div layout:fragment="contents">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 center jumbotron">
-                    <h1 class="home_title">
-                        ようこそ 鈴木さんへ
-                    </h1>
+
+            <div class="box__area">
+                <div class="box1 box__bg_photo">
+                    <div style="position:absolute; top:200px; left:200px;">
+                        <font class="text1" color="white" size="7">勇気をもらうか、与えるか</font>
+                    </div>
+                </div>
+
+                <div class="box1">
+                    <br><br><br>
+                    <div style="text-align: center;">
+                        <font class="text1" color="black" size="6">鈴木さんは悩んでいる人と悩みに答えてくれる人を繋げるアプリケーションです。</font>
+                    </div>
+
+                    <div class="box1">
+                        <div>
+                            <br>
+                            <font class="text1" color="black" size="5">― 無料の通話サービス
+                            </font>
+                            <br>
+                            <font class="text1" color="black" size="4">鈴木さん(仮)では，繋がったユーザー間に無料の通話サービスを提供します．音声のみの通話となるため，普段はなかなか人に言えない悩みも安心して相談できます．　</font>
+                        </div>
+                        <div>
+                            <br>
+                            <font class="text1" color="black" size="5">― 安心のレビュー評価</font>
+                            <br>
+                            <font class="text1" color="black" size="4">鈴木さん(仮)では，通話終了後，相談に乗ってくれたユーザーに対してレビュー評価ができます．このレビュー評価は，ユーザーの信頼性を表すため，重要な指標となります．</font>
+                            <br><br><br>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <div style="background-color:rgba(255,0,0,0.2)">
+                            <center>
+                                <font class="text1" color="black" size="5">今、悩んでいる人</font>
+                                <br>
+                                <font class="test1" color="black" size="4">相談相手を見つけるのは中々難しいですよね．<br>かと言って，自分の中に溜め込むのも良くありません． <br>鈴木さん(仮)で，あなたの相談に乗ってくれる人を探し，一歩踏み出す勇気をもらいましょう．</font>
+                            </center>
+                        </div>
+                        <br>
+                        <div style="background-color:rgba(0,0,255,0.2">
+                            <center>
+                                <font class="text1" color="black" size="5">悩みに答えてくれる人</font>
+                                <br>
+                                <font class="test1" color="black" size="4">これまでのあなたの経験は，他の誰も持っていない，唯一無二のものです．<br>そして今，その経験を聞きたい相談に乗ってほしいと願う人がいます．<br>あなたの的確なアドバイスで，悩める人に勇気を与えましょう．</font>
+                            </center>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <center>
+            <div>
+                <a href="#" class="btn-square-raised">利用する</a>
+            </div>
+            </center>
+
+        </div>
+
+
+
+        <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null">
+            <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
         </div>
     </div>
 </div>
-
+</div>
 </body>
 </html>
-
