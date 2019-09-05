@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ConversationController {
 
+    @GetMapping("/standby")
+    public String standby() {
+        return "standby";
+    }
+
     @GetMapping("/conversation")
     public String conversation() {
         return "conversation";
