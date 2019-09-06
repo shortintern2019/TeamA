@@ -38,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")//ユーザのパラメータ名
                 .passwordParameter("password");//パスワードのパラメータ名
 
+//        http.requiresChannel().antMatchers("/login*").requiresSecure();
+        http.requiresChannel().anyRequest().requiresSecure();
 
 //      TODO: xxs対策を一時的に外す
         http.cors().and().csrf().disable();
