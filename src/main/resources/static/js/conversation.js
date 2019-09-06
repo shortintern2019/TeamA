@@ -50,8 +50,8 @@ if (roomName != "wait") {
 function callPartner() {
     const call = peer.call(roomName, localStream, {
         metadata: {
-            partnerUserName: partnerUserName,
-            partnerUserId: partnerUserId
+            partnerUserName: userName,
+            partnerUserId: userId
         }
     });
     setupCallEventHandlers(call);

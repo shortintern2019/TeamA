@@ -76,8 +76,8 @@ public class ConnectController {
             }
         }
 
+        model.addAttribute("user_name", user.getName());
         model.addAttribute("user_id", user.getId());
-        model.addAttribute("room_name", roomName);
         model.addAttribute("room_name", roomName);
         model.addAttribute("role", role.toString());
 
