@@ -4,23 +4,6 @@
       layout:decorate="~{layout/layout}">
 <head lang="ja">
 
-
-    <style>
-        /*.box1 {*/
-        /*width: 100vw;*/
-        /*height: 120vh;*/
-
-        /*display: flex; !* 要素をflexboxに対応させる *!*/
-        /*align-items: center; !* 縦方向の中央揃え *!*/
-        /*justify-content: center; !* 横方向の中央揃え *!*/
-        /*flex-direction: column; !* 子要素の並びを上から下にする（要素の改行に対応） *!*/
-
-        /*background-image:*/
-        /*background-size: cover;*/
-        /*background-position: center;*/
-        /*}.*/
-    </style>
-
     <style th:inline="text">
         .jumbotron {background: url("[[@{/images/top.png}]]") center no-repeat;
             background-size: cover;
@@ -33,12 +16,17 @@
 <body>
 <div layout:decorator="layout">
     <div layout:fragment="contents">
-        <div class="jumbotron">
+        <div class="jumbotron align-bottom">
+            <div style="position:absolute; top:200px; left:200px;">
+                <font class="text1" color="white" size="7">勇気をもらうか、与えるか。</font>
+            </div>
+
             <div class="container">
-                <div style="position:absolute; top:200px; left:200px;">
-                    <font class="text1" color="white" size="7">勇気をもらうか、与えるか。</font>
+                <div style="text-align: center;">
+                    <a href="/matching" class="btn btn-primary" style="margin-top: 300px; width: 300px">始める</a>
                 </div>
             </div>
+
         </div>
 
 
@@ -96,7 +84,7 @@
         </div>
 
             <div style="text-align: center;">
-                <a href="/matching" class="btn btn-primary">始める</a>
+                <a href="/matching" class="btn btn-primary" style="width: 300px">始める</a>
             </div>
 
         </div>
