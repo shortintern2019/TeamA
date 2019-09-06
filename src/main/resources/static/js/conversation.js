@@ -146,7 +146,7 @@ $('#send-button').on('click', function() {
 });
 
 function postRoomId(id) {
-    var url= 'http://localhost:8080/notify_room_name';
+    var url= '/notify_room_name';
     $.ajax({
         url: url,
         type: 'POST',
