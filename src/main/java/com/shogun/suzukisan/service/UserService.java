@@ -107,12 +107,12 @@ public class UserService {
         return userRepository.updateMenteeScore(menteeScore, userId);
     }
     // update mentorCounter
-    public Integer updateMentorCounter(Integer mentorCounter, Long userId) {
-        return userRepository.updateMentorCount(mentorCounter, userId);
+    public Integer updateMentorCount(Integer mentorCount, Long userId) {
+        return userRepository.updateMentorCount(mentorCount, userId);
     }
     // update menteeCounter
-    public Integer updateMenteeCounter(Integer menteeConter, Long userId) {
-        return userRepository.updateMenteeCount(menteeConter, userId);
+    public Integer updateMenteeCount(Integer menteeCount, Long userId) {
+        return userRepository.updateMenteeCount(menteeCount, userId);
     }
 
     // DELETE

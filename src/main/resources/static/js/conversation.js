@@ -24,6 +24,7 @@ peer = new Peer({
 peer.on('open', function(){
     postRoomId(peer.id);
     $('#my-id').text(peer.id);
+    console.log(peer.id);
 });
 
 peer.on('error', function(err){
@@ -134,7 +135,13 @@ $('#send-button').on('click', function() {
         return
     }
 
-    $("[name=userId]").val(partnerUserId);
+    if(roomName == "wait") {
+        // var tmp = $('#my-id').val();
+        $("[name=roomName]").val(peer.id);
+    } else {
+        $("[name=roomName]").val(roomName);
+    }
+    $("[name=role]").val(role);
     $('#review-form').submit();
 });
 
