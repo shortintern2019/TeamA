@@ -6,92 +6,45 @@
 
 
     <style>
-        .box1 {
-        width: 100vw;
-        height: 120vh;
+        /*.box1 {*/
+        /*width: 100vw;*/
+        /*height: 120vh;*/
 
-        display: flex; /* 要素をflexboxに対応させる */
-        align-items: center; /* 縦方向の中央揃え */
-        justify-content: center; /* 横方向の中央揃え */
-        flex-direction: column; /* 子要素の並びを上から下にする（要素の改行に対応） */
+        /*display: flex; !* 要素をflexboxに対応させる *!*/
+        /*align-items: center; !* 縦方向の中央揃え *!*/
+        /*justify-content: center; !* 横方向の中央揃え *!*/
+        /*flex-direction: column; !* 子要素の並びを上から下にする（要素の改行に対応） *!*/
 
-        background-image: url(https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80);
-        background-size: cover;
-        background-position: center;
-        }.
+        /*background-image:*/
+        /*background-size: cover;*/
+        /*background-position: center;*/
+        /*}.*/
     </style>
 
-    <style>
-        .box2 {
-        width: 100vw;
-        height: 35vh;
-        }.
-    </style>
-
-    <style>
-        .box3 {
-        width: 100vw;
-        height: 50vh;
-
-        display: flex; /* 要素をflexboxに対応させる */
-        justify-content: center;
-        background-size: cover;
-        background-position: center;
-        }.
-    </style>
-
-    <style>
-        .box4 {
-        width: 30vw;
-        height: 30vh;
-        }.
-    </style>
-
-    <style>
-        .text1 {
-	    font-family: serif;
-	    }
-    </style>
-
-    <style>
-        .btn-square-raised {
-          display: inline-block;
-          padding: 0.5em 1em;
-          text-decoration: none;
-          background: #668ad8;/*ボタン色*/
-          color: #668ad8;/*ボタン色と同じに*/
-          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-          border-bottom: solid 3px #627295;
-          border-radius: 3px;/*角の丸み*/
-          font-weight: bold;
-          text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
-        }
-
-        .btn-square-raised:active {
-          /*ボタンを押したとき*/
-          -webkit-transform: translateY(4px);
-          transform: translateY(4px);
-          box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
-          border-bottom: none;
+    <style th:inline="text">
+        .jumbotron {background: url("[[@{/images/top.png}]]") center no-repeat;
+            background-size: cover;
+            height: 60vh;
         }
     </style>
-
 
 </head>
 
 <body>
 <div layout:decorator="layout">
     <div layout:fragment="contents">
-        <div class="container">
-
-            <div class="box_area">
-                <div class="box1">
-                    <div style="position:absolute; top:200px; left:200px;">
-                        <font class="text1" color="white" size="7">勇気をもらうか、与えるか。</font>
-                    </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div style="position:absolute; top:200px; left:200px;">
+                    <font class="text1" color="white" size="7">勇気をもらうか、与えるか。</font>
                 </div>
+            </div>
+        </div>
 
-                <div class="box2">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
                     <div style="text-align: center;">
                         <font class="text1" color="black" size="6">鈴木さんは悩んでいる人と悩みに答えてくれる人を繋げるアプリケーションです。</font>
                     </div>
@@ -112,25 +65,38 @@
                         <br><br><br>
                     </div>
                 </div>
-
-                <div class="box3">
-                    <div class="box4" style="background-color:rgba(255,0,0,0.2);">
-                        <div style="text-align: center;"><font class="text1" color="black" size="5">今、悩んでいる人</font></div>
-                        <br>
-                        <div style="text-align: left; margin-top:-20px"><font class="test1" color="black" size="4">相談相手を見つけるのは中々難しいですよね．<br>かと言って，自分の中に溜め込むのも良くありません． <br>鈴木さん(仮)で，あなたの相談に乗ってくれる人を探し，一歩踏み出す勇気をもらいましょう．</font></div>div>
-                    </div>
-                    <div class="box4" style="background-color:rgba(0,0,255,0.2);text-align: center;">
-                        <div style="text-align: center;"><font class="text1" color="black" size="5">悩みに答えてくれる人</font></div>
-                        <br>
-                        <div style="text-align: left; margin-top:-20px"><font class="test1" color="black" size="4">これまでのあなたの経験は，他の誰も持っていない，唯一無二のものです．<br>そして今，その経験を聞きたい相談に乗ってほしいと願う人がいます．<br>あなたの的確なアドバイスで，悩める人に勇気を与えましょう．</font></div>
-                    </div>
-                </div>
-
-                </div>
             </div>
 
+            <div class="row" style="padding-bottom: 100px;">
+
+                <div class="col-sm-6">
+                    <div class="card" style="background-color:rgba(255,0,0,0.2);">
+                        <div class="card-title">
+                            <div style="text-align: center;"><font class="text1" color="black" size="5">今、悩んでいる人</font></div>
+                        </div>
+                        <div class="card-body">
+                            <div><font class="test1" color="black" size="4">相談相手を見つけるのは中々難しいですよね．かと言って，自分の中に溜め込むのも良くありません．鈴木さんで，あなたの相談に乗ってくれる人を探し，一歩踏み出す勇気をもらいましょう．</font></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card" style="background-color:rgba(0,0,255,0.2);">
+                        <div class="card-title">
+                            <div style="text-align: center;"><font class="text1" color="black" size="5">悩みに答えてくれる人</font></div>
+                        </div>
+                        <div class="card-body">
+                            <div><font class="test1" color="black" size="4">これまでのあなたの経験は，他の誰も持っていない，唯一無二のものです．そして今，その経験を聞きたい相談に乗ってほしいと願う人がいます．あなたの的確なアドバイスで，悩める人に勇気を与えましょう．</font></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
             <div style="text-align: center;">
-                <a href="/matching" class="btn btn-primary">利用する</a>
+                <a href="/matching" class="btn btn-primary">始める</a>
             </div>
 
         </div>
