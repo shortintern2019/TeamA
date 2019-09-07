@@ -25,6 +25,10 @@ peer.on('open', function(){
     postRoomId(peer.id);
     $('#my-id').text(peer.id);
     console.log(peer.id);
+
+    if (roomName != "wait") {
+        callPartner();
+    }
 });
 
 peer.on('error', function(err){
@@ -44,9 +48,7 @@ peer.on('call', function(call){
     setupCallEventHandlers(call);
 });
 
-if (roomName != "wait") {
-    setTimeout(callPartner, 1*1000);
-}
+
 
 function callPartner() {
     const call = peer.call(roomName, localStream, {
